@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ question.title }}</title>
+</head>
+<body>
+    <h1>{{ question.title }}</h1>
+    <p>{{ question.body }}</p>
+
+    <h2>Ответы:</h2>
+    <ul>
+        {% for answer in question.answers %}
+            <li>{{ answer.body }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Оставьте ответ:</h3>
+    <form method="POST" action="{{ url_for('answer_question', question_id=question.id) }}">
+        <textarea name="body" rows="3" required></textarea><br><br>
+        <button type="submit">Ответить</button>
+    </form>
+
+    <a href="{{ url_for('index') }}">Назад к списку вопросов</a>
+</body>
+</html>
